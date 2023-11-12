@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  database:
+    image: postgres:latest
+    container_name: db
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: hoomo_rental
+      POSTGRES_PASSWORD: 137278
+    networks:
+      - hoomoNetwork
+
+  backend:
+    build: back
+    container_name: back
+    hostname: backend
+    image: hoomo_rental_api
+    entrypoint: /app/entrypoint.sh
+    stdin_open: true
+    tty: true
+    working_dir: /app
+    volumes:
+      - ./api:/api
+    depends_on:
+      - database
+    networks:
+      - hoomoNetwork
+    ports:
+      - '3030:3030'
+
+  client:
+    build: front
+    container_name: front
+    hostname: client
+    image: hoomo_rental_client
+    command: npm start
+    ports:
+        - "5050:5050"
+    working_dir: /app
+    volumes:
+        - ./client:/client
+    networks:
+      - hoomoNetwork
+
+volumes:
+  postgres_data:
+
+networks:
+  hoomoNetwork:
+    driver: bridge
