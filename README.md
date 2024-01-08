@@ -11,7 +11,7 @@
 "Hoomo-Rental-Car" is a platform that allows users to either rent a car or list their own cars for rent if they own one. This platform has been developed using Ruby on Rails for both the server and view pages. It utilizes PostgreSQL as its database system.
 
 ## How to run:
-This project is Dockerized. To run it, ensure Docker is installed on your system, then use the command "docker compose run" on your local machine. Once the containers are built, open the following URL in your browser: 'http://localhost:5050' to test the application.
+This project is Dockerized. To run it, make sure Docker is installed on your system, then use the command "docker compose run" on your local machine. Once the containers are built, open the following URL in your browser: 'http://localhost:5050' to test the application.
 
 ## Users:
 ### Guest User: 
